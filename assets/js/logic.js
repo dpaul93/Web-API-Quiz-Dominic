@@ -25,7 +25,7 @@ if (event.target.matches("button")) {
 }
 });
 
-startButton.addEventListener("click", function () {
+submitButton.addEventListener("click", function () {
     saveScore();
 });
 
@@ -33,7 +33,7 @@ var quizQuestions = getQuizQuestions();
 
 function startQuiz () {
     startScreen.classList.add("hide");
-    questionsScreen.classList.remove("hide");
+    questions.classList.remove("hide");
 
     startTimer();
 
@@ -54,6 +54,73 @@ function displayQuestion () {
     });
 }
 
+function checkAnswer(selectedChoice) {
+    var currentQuestion = quizQuestions[currentQuestionIndex];
+
+    if (selectedChoice === currentQuestion.correctAnswer) {
+        showFeedback("correct!", "green");
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizQuestions.length) {
+            setTimeout(displayQuestion, 1000);
+        } else {
+            endQuiz();
+        }
+    } 
+    else {
+        showFeedback("Wrong!", "red");
+        timeleft -= 10;
+        currentQuestionIndex++;
+        if(timeleft <= 0) {
+            endQuiz();
+        }
+    }
+        }
 
 
-})
+        function startTimer() {
+            timer = setInterval(function () {
+                timeleft--;
+                timeElement.textContent = timeleft;
+
+                if (timeleft <= 0) {
+                    endQuiz();
+                }
+            }, 1000)
+            }
+        
+            function endQuiz(){
+                clearInterval(timer);
+
+                questions.classList.add("hide");
+                endScreen.classList.remove("hide");
+
+                finalScore.textContent = timeleft;
+            }       
+
+            function showFeedback(message, color) {
+                feedback.textContent = message;
+                feedback.style.color = color;
+                feedback.classList.remove("hide");
+
+                setTimeout(function (){
+                    feedback.classList.add("hide");
+                }, 1000);
+            }
+
+            function saveScore() {
+                var initials = nameInitials.value.trim();
+
+                if (initials === "") {
+                    alert("Please fill in your initials.");
+                    return;
+                }
+
+                var scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+                scores.push({ initials: initials, score: timeleft });
+
+                localStorage.setItem("scores", JSON.stringify(scores));
+
+                alert("Score saved! Initials: " + initials + "Score: " + timeleft);
+            }
+});
