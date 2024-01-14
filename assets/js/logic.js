@@ -43,7 +43,7 @@ function startQuiz () {
 function displayQuestion () {
     var currentQuestion = quizQuestions[currentQuestionIndex];
 
-    questionTitle.textcontent =currentQuestion.question;
+    questionTitle.textContent =currentQuestion.question;
 
     choicesCont.innerHTML = "";
 
@@ -121,6 +121,6 @@ function checkAnswer(selectedChoice) {
 
                 localStorage.setItem("scores", JSON.stringify(scores));
 
-                alert("Score saved! Initials: " + initials + "Score: " + timeleft);
+                alert("Score saved! Initials: " + initials + " Score: " + timeleft);
             }
 });
