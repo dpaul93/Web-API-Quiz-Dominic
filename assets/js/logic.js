@@ -69,7 +69,7 @@ function checkAnswer(selectedChoice) {
     else {
         showFeedback("Wrong!", "red");
         timeleft -= 10;
-        currentQuestionIndex++;
+        // currentQuestionIndex++;
         if(timeleft <= 0) {
             endQuiz();
         }
