@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function () {
+
 var startButton = document.getElementById("start");
 var choicesCont = document.getElementById("choices");
 var questionTitle = document.getElementById("questions-title");
@@ -17,3 +19,41 @@ var timer;
 // Button event listener
 startButton.addEventListener("click", startQuiz);
 
+choicesCont.addEventListener("click", function (event) {
+if (event.target.matches("button")) {
+    checkAnswer(event.target.textContent);
+}
+});
+
+startButton.addEventListener("click", function () {
+    saveScore();
+});
+
+var quizQuestions = getQuizQuestions();
+
+function startQuiz () {
+    startScreen.classList.add("hide");
+    questionsScreen.classList.remove("hide");
+
+    startTimer();
+
+    displayQuestion();
+}
+
+function displayQuestion () {
+    var currentQuestion = quizQuestions[currentQuestionIndex];
+
+    questionTitle.textcontent =currentQuestion.question;
+
+    choicesCont.innerHTML = "";
+
+    currentQuestion.choices.forEach(function (choice) {
+        var choiceButton = document.createElement("button");
+        choiceButton.textContent = choice;
+        choicesCont.appendChild(choiceButton);
+    });
+}
+
+
+
+})
