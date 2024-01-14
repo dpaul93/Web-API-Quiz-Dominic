@@ -22,7 +22,7 @@ function getQuizQuestions() {
 
 	{question: "How does a WHILE loop start?",
     choices: ["while (i <= 10)", "while i = 1 to 10", "while (i <= 10; i++)", "if while (do 10 - i)"],
-    correctAnswer: "while (i <=10)"
+    correctAnswer: "while (i <= 10)"
 	}
 ]
 };

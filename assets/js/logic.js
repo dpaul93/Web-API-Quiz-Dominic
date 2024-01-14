@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var startButton = document.getElementById("start");
 var choicesCont = document.getElementById("choices");
-var questionTitle = document.getElementById("questions-title");
+var questionTitle = document.getElementById("question-title");
 var timeElement = document.getElementById("time");
 var nameInitials = document.getElementById("initials");
 var finalScore = document.getElementById("final-score");
