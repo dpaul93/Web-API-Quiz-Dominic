@@ -8,5 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return b.score - a.score;
     });
 
-    
-})
+    var highScoresList = document.getElementById("highScoresList");
+
+    highScores.forEach(function (score) {
+        var li = document.createElement("li");
+        li.textContent = score.initials + " : " + score.score;
+        highScoresList.appendChild(li);
+    });
+
+    clearScores.addEventListener("click", function () {
+        clearHighScores();
+        highScoresList.innerHTML = "<p>High score cleared!</p>";
+    });
+
+    function clearHighScores() {
+        localStorage.removeItem("scores");
+    }
+});
