@@ -69,7 +69,6 @@ function checkAnswer(selectedChoice) {
     else {
         showFeedback("Wrong!", "red");
         timeleft -= 10;
-        // currentQuestionIndex++;
         if(timeleft <= 0) {
             endQuiz();
         }
@@ -122,5 +121,6 @@ function checkAnswer(selectedChoice) {
                 localStorage.setItem("scores", JSON.stringify(scores));
 
                 alert("Score saved! Initials: " + initials + " Score: " + timeleft);
+                window.location.href='http://127.0.0.1:5500/highscores.html';
             }
 });
