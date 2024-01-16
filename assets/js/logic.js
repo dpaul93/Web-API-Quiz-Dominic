@@ -54,12 +54,15 @@ function displayQuestion () {
     });
 }
 
+var correctAudio = new Audio("./assets/sfx/correct.wav")
+var incorrectAudio = new Audio("./assets/sfx/incorrect.wav")
 
 function checkAnswer(selectedChoice) {
     var currentQuestion = quizQuestions[currentQuestionIndex];
 
     if (selectedChoice === currentQuestion.correctAnswer) {
         showFeedback("correct!", "green");
+        correctAudio.play();
         currentQuestionIndex++;
         if (currentQuestionIndex < quizQuestions.length) {
             setTimeout(displayQuestion, 1000);
@@ -69,6 +72,7 @@ function checkAnswer(selectedChoice) {
     } 
     else {
         showFeedback("Wrong!", "red");
+        incorrectAudio.play();
         timeleft -= 10;
         if(timeleft <= 0) {
             endQuiz();
